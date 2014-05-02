@@ -9,13 +9,11 @@ public class SearchSteps {
 
     private Google google;
 
-    public SearchSteps(){
-        google = Sites.getGoogle();
-    }
-
     @Given("^I am on google home page$")
     public void I_am_on_google_home_page() throws Throwable {
-        google.homePage();
+        google = new Google();
+        Sites.launchedSites.put("google",google);
+
 
     }
 

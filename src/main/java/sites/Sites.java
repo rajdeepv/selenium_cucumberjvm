@@ -1,15 +1,8 @@
 package sites;
-import sites.google.Google;
 
+import java.util.HashMap;
 
 public class Sites {
-    private static Google google;
-    static {
-       if(google ==null){
-           google = new Google();}
-    }
+    public static HashMap<String, IwebSite> launchedSites = new HashMap<String, IwebSite>();
 
-    public static Google getGoogle(){
-        return google;
-    }
 }

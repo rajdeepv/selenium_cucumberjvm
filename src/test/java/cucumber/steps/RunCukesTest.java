@@ -3,20 +3,28 @@ package cucumber.steps;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.junit.Cucumber;
+import sites.IwebSite;
 import sites.Sites;
 import org.junit.runner.RunWith;
-
-import java.util.HashMap;
-import java.util.Map;
+import utilities.Env;
 
 
 @RunWith(Cucumber.class)
 public class RunCukesTest {
 
-    @After()
-    public void closeLms(){
-        Sites.getGoogle().close();
+
+    @Before()
+    public void setUp(){
+        System.setProperty("webdriver.chrome.driver", Env.ProjectRoot+"/src/main/resources/chromedriver");
     }
+
+    @After()
+    public void closeAllSites(){
+        for(IwebSite site: Sites.launchedSites.values()){
+            site.close();
+        }
+    }
+
 
 
 }
