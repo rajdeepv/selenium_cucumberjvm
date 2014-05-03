@@ -32,8 +32,9 @@ public class HomePage {
     public void sendPingTo(String name, String message) {
         Waiter.waitForAMinuite(driver).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='vB']")));
         chatList(name).click();
+        Waiter.waitFor15Seconds(driver).until(ExpectedConditions.elementToBeClickable(chatTextBox()));
         chatTextBox().sendKeys(message);
-        chatTextBox().sendKeys(Keys.RETURN);
+        chatTextBox().sendKeys(Keys.ENTER);
     }
 
     public String lastMessage(){

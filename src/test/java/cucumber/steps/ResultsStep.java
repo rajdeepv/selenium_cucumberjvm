@@ -19,7 +19,7 @@ public class ResultsStep {
         List<String> results = google.searchResultsPage().allResults();
 
         for (String result : results) {
-            assertThat(result).contains(expectedResult);
+            assertThat(result).containsIgnoringCase(expectedResult);
         }
     }
 }

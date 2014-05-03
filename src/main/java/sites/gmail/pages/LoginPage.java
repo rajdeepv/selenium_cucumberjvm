@@ -29,6 +29,7 @@ public class LoginPage {
         loginTextBox().sendKeys(emailId);
         passwordTextBox().sendKeys(password);
         signInButton().click();
+        Waiter.waitFor15Seconds(driver).until(ExpectedConditions.presenceOfElementLocated(By.name("q")));
         Waiter.waitForAMinuite(driver).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='vB']")));
     }
 }

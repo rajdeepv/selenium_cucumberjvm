@@ -28,8 +28,8 @@ public class Google implements IwebSite {
         dCaps.setCapability("takesScreenshot", true);
 
         base_url = "http://www.google.com";
-//        driver = new PhantomJSDriver(dCaps);
-        driver = new ChromeDriver();
+        driver = new PhantomJSDriver(dCaps);
+//        driver = new ChromeDriver();
 //        driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.get(base_url);
@@ -38,7 +38,7 @@ public class Google implements IwebSite {
     }
 
     public void close() {
-        driver.close();
+        driver.quit();
     }
 
     public HomePage homePage() {

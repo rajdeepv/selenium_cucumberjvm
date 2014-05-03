@@ -1,0 +1,7 @@
+.idea/
+src/.DS_Store
+src/main/.DS_Store
+selenium_cucumberjvm.*
+.gradle/
+build/
+out/

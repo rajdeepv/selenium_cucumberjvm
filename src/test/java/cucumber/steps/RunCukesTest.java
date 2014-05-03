@@ -8,6 +8,8 @@ import sites.Sites;
 import org.junit.runner.RunWith;
 import utilities.Env;
 
+import java.util.HashMap;
+
 
 @RunWith(Cucumber.class)
 public class RunCukesTest {
@@ -16,6 +18,7 @@ public class RunCukesTest {
     @Before()
     public void setUp(){
         System.setProperty("webdriver.chrome.driver", Env.ProjectRoot+"/src/main/resources/chromedriver");
+        Sites.launchedSites.clear();
     }
 
     @After()

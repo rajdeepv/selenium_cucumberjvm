@@ -24,7 +24,7 @@ public class Maps implements IwebSite {
     }
 
     public void close() {
-        driver.close();
+        driver.quit();
     }
 
     public MapsHomePage mapsHomePage() {

@@ -18,11 +18,7 @@ public class SearchResultsPage {
 
         for(WebElement e:searchResultsTitle){
             results.add(e.getText());
-            System.out.println(e.getText());
         }
-        System.out.println("*************");
-        System.out.println("****** Total: "+ results.size() + " Results ******");
-        System.out.println("*************");
         return results;
     }
 }
