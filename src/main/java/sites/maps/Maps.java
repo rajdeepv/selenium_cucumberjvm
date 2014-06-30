@@ -33,5 +33,6 @@ public class Maps implements IwebSite {
         }
         return homePage;
     }
+    public void takeScreenshot(){}
 
 }

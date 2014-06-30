@@ -1,6 +1,11 @@
 Feature:
-  Scenario: to verify a message sent over gtalk
-    Given Receiver is logged into Gmail as user "abc@gmail.com"
-    And Sender is logged into Gmail as user "xyz@gmail.com"
+  In Order to chat with my friends over gtalk inside Gmail
+  As a user
+  I should be able to send a messages successfully
+
+
+  Scenario: chat message sent over gtalk  inside Gmail
+    Given Receiver is logged into Gmail as user "test.rajdeep1@gmail.com"
+    And Sender is logged into Gmail as user "test.rajdeep2@gmail.com"
     When Sender sends a ping
     Then Receiver should recieve it

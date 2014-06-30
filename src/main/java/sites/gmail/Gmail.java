@@ -1,8 +1,7 @@
 package sites.gmail;
 
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriver;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
@@ -10,7 +9,11 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import sites.IwebSite;
 import sites.gmail.pages.HomePage;
 import sites.gmail.pages.LoginPage;
+import utilities.Env;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class Gmail implements IwebSite {
@@ -28,8 +31,8 @@ public class Gmail implements IwebSite {
         dCaps.setCapability("takesScreenshot", true);
         base_url = "http://www.gmail.com";
 
-//        driver = new PhantomJSDriver(dCaps);
-        driver = new ChromeDriver();
+        driver = new PhantomJSDriver(dCaps);
+//        driver = new ChromeDriver();
 //        driver = new FirefoxDriver();
 
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -58,6 +61,16 @@ public class Gmail implements IwebSite {
     public void setPositionAndSize(int height, int width, int x, int y) {
         driver.manage().window().setPosition(new Point(height, width));
         driver.manage().window().setSize(new Dimension(x, y));
+    }
+
+    public void takeScreenshot() {
+        Random rand = new Random();
+        File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        try {
+            FileUtils.copyFile(scrFile, new File(Env.ProjectRoot + "/GmailScreenshot" + rand.nextInt(10) + ".png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

@@ -5,8 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.Waiter;
 
 public class HomePage {
@@ -21,8 +21,8 @@ public class HomePage {
         return driver.findElement(By.xpath("//span[.='" + name + "']"));
     }
 
-    public WebElement latestMessage() {
-        return driver.findElement(By.xpath("//div[@role='log']/div/div[last()-1]"));
+    public String latestMessage() {
+        return driver.findElement(By.xpath("//div[@role='chatMessage' and @class='km'][last()]")).getText();
     }
 
     public WebElement chatTextBox() {
@@ -30,7 +30,7 @@ public class HomePage {
     }
 
     public void sendPingTo(String name, String message) {
-        Waiter.waitForAMinuite(driver).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='vB']")));
+        waitForContactOnline(name);
         chatList(name).click();
         Waiter.waitFor15Seconds(driver).until(ExpectedConditions.elementToBeClickable(chatTextBox()));
         chatTextBox().sendKeys(message);
@@ -39,7 +39,20 @@ public class HomePage {
 
     public String lastMessage(){
         Waiter.waitForAMinuite(driver).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@role='log']")));
-        return latestMessage().getText();
+        return latestMessage();
+    }
+
+    private void waitForContactOnline(String name){
+        Waiter.waitForAMinuite(driver).until(new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver) {
+                WebElement img = driver.findElement(By.xpath("//tr[contains(.,'"+name+"')]//img"));
+                String status = img.getAttribute("Alt");
+                if (status.contains("Available"))
+                    return true;
+                else
+                    return false;
+            }
+        });
     }
 
 

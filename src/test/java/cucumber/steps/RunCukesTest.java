@@ -24,6 +24,7 @@ public class RunCukesTest {
     @After()
     public void closeAllSites(){
         for(IwebSite site: Sites.launchedSites.values()){
+            site.takeScreenshot();
             site.close();
         }
     }

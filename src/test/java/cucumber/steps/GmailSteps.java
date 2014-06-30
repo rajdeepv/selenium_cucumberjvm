@@ -17,27 +17,27 @@ public class GmailSteps {
     @Given("^Sender is logged into Gmail as user \"([^\"]*)\"$")
     public void Sender_is_logged_into_Gmail_as_user(String senderEmail) throws Throwable {
         senderGmail = new Gmail();
-        Sites.launchedSites.put("SenderGmail",senderGmail);
-        senderGmail.setPositionAndSize(0,0,700,1000);
-        senderGmail.loginPage().SignIn(senderEmail,"******");
+        Sites.launchedSites.put("SenderGmail", senderGmail);
+        senderGmail.setPositionAndSize(0, 0, 700, 1000);
+        senderGmail.loginPage().SignIn(senderEmail, "Test@1234");
     }
 
     @And("^Receiver is logged into Gmail as user \"([^\"]*)\"$")
     public void Receiver_is_logged_into_Gmail_as_user(String recieverEmail) throws Throwable {
         receiverGmail = new Gmail();
-        Sites.launchedSites.put("receiverGmail",receiverGmail);
-        receiverGmail.setPositionAndSize(800, 0, 700, 1000);
-        receiverGmail.loginPage().SignIn(recieverEmail,"*****");
+        Sites.launchedSites.put("receiverGmail", receiverGmail);
+        receiverGmail.setPositionAndSize(710, 0, 700, 1000);
+        receiverGmail.loginPage().SignIn(recieverEmail, "Test@1234");
     }
 
     @When("^Sender sends a ping$")
     public void Sender_sends_a_ping() throws Throwable {
-        senderGmail.homePage().sendPingTo("babu","Love you");
+        senderGmail.homePage().sendPingTo("test_account1 test", "Good Night!");
     }
 
     @Then("^Receiver should recieve it$")
     public void Receiver_should_recieve_it() throws Throwable {
         String latestMessage = receiverGmail.homePage().lastMessage();
-        assertThat(latestMessage).contains("Love you");
+        assertThat(latestMessage).contains("Good Night!");
     }
 }

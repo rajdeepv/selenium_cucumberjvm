@@ -1,9 +1,9 @@
 package sites.maps.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.sikuli.api.*;
-import org.sikuli.api.robot.Key;
 import org.sikuli.api.robot.Mouse;
 import org.sikuli.api.robot.desktop.DesktopMouse;
 import org.sikuli.webdriver.ImageElement;
@@ -37,7 +37,8 @@ public class MapsHomePage extends MapsPages {
 
     public void searchPlace(String placeName) {
         searchBox().sendKeys(placeName);
-        searchButton().click();
+        searchBox().sendKeys(Keys.RETURN);
+//        searchButton().click();
     }
 
     public void getDirectionToBhosari() throws IOException {
@@ -47,6 +48,11 @@ public class MapsHomePage extends MapsPages {
         ScreenRegion sr = new DesktopScreenRegion();
         Mouse mouse = new DesktopMouse();
         mouse.rightClick(sr.find(tg).getCenter());
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
         directionToHere().click();
 
     }

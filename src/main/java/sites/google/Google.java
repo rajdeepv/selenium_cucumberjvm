@@ -52,8 +52,10 @@ public class Google implements IwebSite {
         if (searchResultsPage == null) {
             searchResultsPage = PageFactory.initElements(driver, SearchResultsPage.class);
         }
-        ;
         return searchResultsPage;
+    }
+
+    public void takeScreenshot() {
     }
 
 
