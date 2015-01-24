@@ -2,9 +2,9 @@ package sites.gmail;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
+//import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import sites.IwebSite;
 import sites.gmail.pages.HomePage;
@@ -31,9 +31,9 @@ public class Gmail implements IwebSite {
         dCaps.setCapability("takesScreenshot", true);
         base_url = "http://www.gmail.com";
 
-        driver = new PhantomJSDriver(dCaps);
+//        driver = new PhantomJSDriver(dCaps);
 //        driver = new ChromeDriver();
-//        driver = new FirefoxDriver();
+        driver = new FirefoxDriver();
 
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.get(base_url);

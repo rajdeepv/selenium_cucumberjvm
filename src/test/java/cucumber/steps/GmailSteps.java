@@ -32,12 +32,13 @@ public class GmailSteps {
 
     @When("^Sender sends a ping$")
     public void Sender_sends_a_ping() throws Throwable {
-        senderGmail.homePage().sendPingTo("test_account1 test", "Good Night!");
+        senderGmail.homePage().sendPingTo("test_account1 test", "Sorry Shaktiman!");
     }
 
     @Then("^Receiver should recieve it$")
     public void Receiver_should_recieve_it() throws Throwable {
         String latestMessage = receiverGmail.homePage().lastMessage();
-        assertThat(latestMessage).contains("Good Night!");
+        assertThat(latestMessage).contains("Sorry Shaktiman!");
+        Thread.sleep(5000);
     }
 }

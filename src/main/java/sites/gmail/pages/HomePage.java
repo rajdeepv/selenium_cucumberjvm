@@ -42,7 +42,7 @@ public class HomePage {
         return latestMessage();
     }
 
-    private void waitForContactOnline(String name){
+    private void waitForContactOnline(final String name){
         Waiter.waitForAMinuite(driver).until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver driver) {
                 WebElement img = driver.findElement(By.xpath("//tr[contains(.,'"+name+"')]//img"));
